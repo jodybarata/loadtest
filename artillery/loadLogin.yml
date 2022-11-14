@@ -1,0 +1,27 @@
+config:
+  target: 'https://niagahoster.co.id/'
+  phases:
+    - duration: 1
+      arrivalCount: 1
+  # Enable the Playwright engine:
+  plugins:
+    ensure: {}
+  ensure : 
+    maxErrorRate: 0
+    thresholds:
+      - vusers.session_length.min: 15000 
+      - vusers.session_length.max: 15000 * vusers.completed
+      - vusers.session_length.median: 15000 
+      - vusers.session_length.p95: 15000 
+      - vusers.session_length.p99: 15000 
+    conditions:
+      - expression: vusers.failed == 0
+  engines:
+    playwright: 
+      launchOptions:
+        headless: true
+  processor: "../tests/testLogin.spec.js"
+scenarios:
+  - engine: playwright
+    flowFunction: "loginFlow"
+    flow: []

@@ -1,0 +1,27 @@
+config:
+  target: https://niagahoster.co.id/orderhosting/24
+  phases:
+    - duration: 1
+      arrivalRate: 10
+  plugins:
+    ensure: {}
+  ensure : 
+    maxErrorRate: 0
+    thresholds:
+      - vusers.session_length.min: 15000 
+      - vusers.session_length.max: 15000 * vusers.completed
+      - vusers.session_length.median: 15000 
+      - vusers.session_length.p95: 15000 
+      - vusers.session_length.p99: 15000 
+    conditions:
+      - expression: vusers.failed == 0
+  # Enable the Playwright engine:
+  engines:
+    playwright: 
+      launchOptions:
+        headless: true
+  processor: "../tests/testWww.spec.js"
+scenarios:
+  - engine: playwright
+    flowFunction: "testWww"
+    flow: []

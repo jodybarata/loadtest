@@ -1,0 +1,21 @@
+{
+  "name": "loadtest",
+  "version": "1.0.0",
+  "description": "load testing artillery engine x playwright",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jodybarata/loadtest.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jodybarata/loadtest/issues"
+  },
+  "homepage": "https://github.com/jodybarata/loadtest#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.27.1"
+  }
+}
