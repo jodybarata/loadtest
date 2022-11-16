@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'artilleryio/artillery:latest'
+            image 'npm install -g artillery artillery-engine-playwright'
             args '-u root:root -i --entrypoint='
         }
     }
