@@ -7,4 +7,4 @@ docker run ^
   -v "C:/Program Files/Jenkins":/var/jenkins_home ^
   -v /var/run/docker.sock:/var/run/docker.sock ^
   --name jenkins ^
-  jenkinsci/blueocean
+  artilleryio/artillery-engine-playwright
