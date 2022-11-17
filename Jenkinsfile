@@ -14,8 +14,8 @@ pipeline {
         stage('Load Test') {
             steps {
                 sh 'mkdir reports'
-                sh '/home/node/artillery/bin/artillery run --output report/reportWww.json artillery/loadWww.yml'
-                sh '/home/node/artillery/bin/artillery report --output report/report report/reportWww.json'
+                sh 'artillery run -o report/reportWww.json artillery/loadWww.yml'
+                sh 'artillery report --output report/report report/reportWww.json'
             }
         }
     }
