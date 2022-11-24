@@ -4,11 +4,7 @@
 //     def customImage = docker.build("docker-jenkins-pipeline:${env.BUILD_ID}", "-f ${dockerfile} .")
 // }
 pipeline {
-    agent any
-
-    triggers {
-        cron('0 0 * * *')
-    }
+    agent { dockerfile true }
 
     stages {
         stage('Load Test') {
