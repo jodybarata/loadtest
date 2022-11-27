@@ -1,25 +1,30 @@
-// node {
-//     checkout scm
-//     def dockerfile = 'Dockerfile'
-//     def customImage = docker.build("docker-jenkins-pipeline:${env.BUILD_ID}", "-f ${dockerfile} .")
-// }
 pipeline {
-    agent { dockerfile true }
-
-     tools {nodejs "node"}
-
-    stages {
-        stage('Load Test') {
-            steps {
-                sh '/home/node/artillery/bin/artillery run -o report/reportWww.json artillery/loadWww.yml'
-                sh '/home/node/artillery/bin/artillery report --output report/report report/reportWww.json'
-            }
-        }
+  agent { 
+    docker { 
+      image 'mcr.microsoft.com/playwright:v1.17.2-focal'
+    } 
+  }
+  stages {
+    stage('install playwright') {
+      steps {
+        sh '''
+          npm i -D @playwright/test
+          npx playwright install
+        '''
+      }
     }
-
-    post {
-        success {
-            archiveArtifacts 'reports/*'
-        }
+    stage('help') {
+      steps {
+        sh 'npx playwright test --help'
+      }
     }
+    stage('test') {
+      steps {
+        sh '''
+          npx playwright test --list
+          npx playwright test
+        '''
+      }W
+    }
+  }
 }
